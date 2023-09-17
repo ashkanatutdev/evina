@@ -18,44 +18,59 @@ const StyledButton = styled.button<ButtonProps>`
         ? "9px 30px 11px"
         : "14px 30px 16px"};
     background-color: ${(props) =>
-  (props.color === 'primary'
-    ? "#1a63b8"
-    : props.color === 'secondary'
-      ? "#429a99"
-      : props.color === 'warning'
-        ? "#FAB848"
-        : props.color === 'error'
-          ? "#FA4848"
-          : props.color === 'info'
-            ? "#2d71a1"
-            : "#52c86e")};
+    props.color === 'primary'
+      ? "#1a63b8"
+      : props.color === 'secondary'
+        ? "#656565"
+        : props.color === 'warning'
+          ? "#FAB848"
+          : props.color === 'error'
+            ? "#FA4848"
+            : props.color === 'info'
+              ? "#2d71a1"
+              : props.color === 'success'
+                ? "#52c86e"
+                : props.color === 'light'
+                  ? "#ececec"
+                  : "#2c2c2c"};
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  color: white;
+  color: ${(props) =>
+    props.color === 'light'
+      ? "#292929"
+      : "#f2f2f2"};
   &:hover {
     color: ${(props) =>
-  (props.color === 'primary'
-    ? "#1a63b8"
-    : props.color === 'secondary'
-      ? "#429a99"
-      : props.color === 'warning'
-        ? "#FAB848"
-        : props.color === 'error'
-          ? "#FA4848"
-          : props.color === 'info'
-            ? "#2d71a1"
-            : "#52c86e")};
+    props.color === 'primary'
+      ? "#1a63b8"
+      : props.color === 'secondary'
+        ? "#656565"
+        : props.color === 'warning'
+          ? "#FAB848"
+          : props.color === 'error'
+            ? "#FA4848"
+            : props.color === 'info'
+              ? "#2d71a1"
+              : props.color === 'success'
+                ? "#52c86e"
+                : props.color === 'light'
+                  ? "#2e2e2e"
+                  : "#2c2c2c"};
     border: ${(props) =>
-  (props.color === 'primary'
-    ? "#1a63b8 1px solid"
-    : props.color === 'secondary'
-      ? "#429a99 1px solid"
-      : props.color === 'warning'
-        ? "#FAB848 1px solid"
-        : props.color === 'error'
-          ? "#FA4848 1px solid"
-          : props.color === 'info'
-            ? "#2d71a1 1px solid"
-            : "#52c86e 1px solid")};
+    props.color === 'primary'
+      ? "#1a63b8 1px solid"
+      : props.color === 'secondary'
+        ? "#656565 1px solid"
+        : props.color === 'warning'
+          ? "#FAB848 1px solid"
+          : props.color === 'error'
+            ? "#FA4848 1px solid"
+            : props.color === 'info'
+              ? "#2d71a1 1px solid"
+              : props.color === 'success'
+                ? "#52c86e 1px solid"
+                : props.color === 'light'
+                  ? "#2e2e2e 1px solid"
+                  : "#2c2c2c 1px solid"};
     background-color: white;
     font-size: 0.7rem
   }

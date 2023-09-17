@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
 
-type Colors = 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success';
+type Colors = 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success' | 'light' | 'dark';
 
 export interface ButtonProps {
   text?: string;
