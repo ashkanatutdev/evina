@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonProps, Variants } from "./Button.types";
+import { ButtonProps, Colors, Variants, getColor } from "./Button.types";
 
-const StyledButton = styled.button<ButtonProps>`
+const StyledButton = styled.button.withConfig({ shouldForwardProp: prop => !["outline"].includes(prop) }) <ButtonProps>`
   border: 0;
   line-height: 1;
   font-size: 0.7rem;
@@ -10,70 +10,16 @@ const StyledButton = styled.button<ButtonProps>`
   font-weight: bold;
   border-radius: 3px;
   display: inline-block;
-  cursor: ${(props) =>
-  (!props.disabled
-    ? 'pointer' : 'default')};
-  padding: ${(props) =>
-    props.size === "small"
-      ? "7px 25px 8px"
-      : props.size === "medium"
-        ? "9px 30px 11px"
-        : "14px 30px 16px"};
-    background-color: ${(props) =>
-  (props.color === 'primary'
-    ? Variants.primary
-    : props.color === 'secondary'
-      ? Variants.secondary
-      : props.color === 'warning'
-        ? Variants.warning
-        : props.color === 'error'
-          ? Variants.error
-          : props.color === 'info'
-            ? Variants.info
-            : props.color === 'success'
-              ? Variants.success
-              : props.color === 'light'
-                ? Variants.light
-                : Variants.dark)};
+  border: ${(props) => (props.outline && props.color === 'light' ? `none` : props.outline && `${getColor(props.color as Colors)} 1px solid`)};
+  cursor: ${(props) => (!props.disabled ? 'pointer' : 'default')};
+  padding: ${(props) => props.size === "small" ? "7px 25px 8px" : props.size === "medium" ? "9px 30px 11px" : "14px 30px 16px"};
+  background-color: ${(props) => (props.outline ? Variants.light : getColor(props.color as Colors))};
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  color: ${(props) =>
-  (props.color === 'light'
-    ? Variants.dark
-    : Variants.light)};
+  color: ${(props) => (props.outline ? props.color === 'light' ? Variants.dark : getColor(props.color as Colors) : props.color === 'light' ? Variants.dark : Variants.light)};
   &:hover {
-    color: ${(props) =>
-  (!props.disabled && props.color === 'primary'
-    ? Variants.primary
-    : !props.disabled && props.color === 'secondary'
-      ? Variants.secondary
-      : !props.disabled && props.color === 'warning'
-        ? Variants.warning
-        : !props.disabled && props.color === 'error'
-          ? Variants.error
-          : !props.disabled && props.color === 'info'
-            ? Variants.info
-            : !props.disabled && props.color === 'success'
-              ? Variants.success
-              : !props.disabled && props.color === 'light'
-                ? Variants.dark
-                : !props.disabled  && Variants.dark)};
-    border: ${(props) =>
-  (!props.disabled && props.color === 'primary'
-    ? `${Variants.primary} 1px solid`
-    : !props.disabled && props.color === 'secondary'
-      ? `${Variants.secondary} 1px solid`
-      : !props.disabled && props.color === 'warning'
-        ? `${Variants.warning} 1px solid`
-        : !props.disabled && props.color === 'error'
-          ? `${Variants.error} 1px solid`
-          : !props.disabled && props.color === 'info'
-            ? `${Variants.info} 1px solid`
-            : !props.disabled && props.color === 'success'
-              ? `${Variants.success} 1px solid`
-              : !props.disabled && props.color === 'light'
-                ? `${Variants.dark} 1px solid`
-                : !props.disabled && `${Variants.dark} 1px solid`)};
-    background-color: ${(props) => (!props.disabled && Variants.light)};
+    color: ${(props) => (!props.outline ? !props.disabled && props.color === 'light' ? Variants.light : !props.disabled && getColor(props.color as Colors) : !props.disabled && props.color === 'light' ? Variants.light : !props.disabled && Variants.light)};
+    border: ${(props) => (!props.outline ? !props.disabled && props.color === 'light' ? `${Variants.dark} 1px solid` : !props.disabled && `${getColor(props.color as Colors)} 1px solid` : !props.disabled && 'none')};
+    background-color: ${(props) => (!props.outline ? !props.disabled && props.color === 'light' ? Variants.dark : !props.disabled && Variants.light : !props.disabled && props.color === 'light' ? Variants.dark : !props.disabled && getColor(props.color as Colors))};
     font-size: 0.7rem
   }
   &:active {
@@ -90,6 +36,7 @@ const Button: React.FC<ButtonProps> = ({
   size,
   color,
   disabled,
+  outline,
   text,
   onClick,
   ...props
@@ -99,6 +46,7 @@ const Button: React.FC<ButtonProps> = ({
       type="button"
       onClick={onClick}
       color={color}
+      outline={outline}
       disabled={disabled}
       size={size}
       {...props}>
