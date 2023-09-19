@@ -16,6 +16,7 @@ padding-top: 12px;
 padding-bottom: 8px;
 opacity: ${props => props.disabled ? '0.5' : '1'};
 z-index: 10;
+border-bottom-color: ${props => props.disabled && Variants.dark} ;
 color: ${props => props.textColor ? props.textColor : Variants.dark} ;
 &:hover{
     background-color: #dbdbdb50;
@@ -27,9 +28,9 @@ color: ${props => props.textColor ? props.textColor : Variants.dark} ;
     border-bottom: ${props => !props.required ? props.focusedColor ? `3px solid ${props.focusedColor}` : `3px solid ${Variants.primary}` : !props.value ? `3px solid ${Variants.error}` : props.focusedColor ? `3px solid ${props.focusedColor}` : `3px solid ${Variants.primary}`};
 }
 `;
-
 const StyledLabel = styled.div.withConfig({ shouldForwardProp: prop => !["focused"].includes(prop) }) <InputProps>`
-    color: ${props => props.required ? props.color ? props.color : Variants.dark : !props.value ? Variants.error : props.color ? props.color : Variants.dark};
+    color: ${props => !props.required ? props.color ? props.color : Variants.dark : !props.value ? Variants.error : props.color ? props.color : Variants.dark};
+    /* color: ${props => props.required ? 'red' : 'blue'}; */
     z-index: 100;
     height: 40px;
     display: flex;
@@ -39,8 +40,9 @@ const StyledLabel = styled.div.withConfig({ shouldForwardProp: prop => !["focuse
     align-items: ${props => !props.focused ? props.value ? 'flex-start' : 'center': 'flex-start'};
     font-size: ${props => !props.focused ? props.value ? '0.6rem' : '0.8rem': '0.6rem'};
     transition: font-size 100ms linear;
+    color: ${props => props.disabled && Variants.dark};
+    opacity: ${props => props.disabled ? '0.5' : '1'};
 `;
-
 const InputMessage = styled.div<InputProps>`
     font-size: 0.65rem;
     color: ${Variants.error};
@@ -51,7 +53,6 @@ const InputMessage = styled.div<InputProps>`
     padding-top: 3px;
 `;
 
-
 const Textbox: React.FC<InputProps> = (props) => {
     const [focus, setFocus] = useState<boolean>(false)
     return (
@@ -60,6 +61,8 @@ const Textbox: React.FC<InputProps> = (props) => {
                 <StyledLabel
                     focused={focus}
                     value={props.value}
+                    disabled= {props.disabled}
+                    required= {props.required}
                     color={props.color}>
                     {props.label}
                 </StyledLabel>}
@@ -75,7 +78,7 @@ const Textbox: React.FC<InputProps> = (props) => {
                 focusedColor={props.focusedColor}
                 textColor={props.textColor}
             />
-            {props.required && props.value?.toString().length === 0 &&
+            {props.required && props.value?.toString().length === 0 && !props.disabled &&
                 <InputMessage>{props.requiredMessage ? props.requiredMessage : 'Required field...'}</InputMessage>}
         </div>
     )
