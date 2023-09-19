@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonProps, Colors, Variants, getColor } from "./Button.types";
+import { ButtonProps} from "./Button.types";
+import {Colors, Variants, getColor } from '../../utils/common'
 
 const StyledButton = styled.button.withConfig({ shouldForwardProp: prop => !["outline"].includes(prop) }) <ButtonProps>`
   border: 0;
