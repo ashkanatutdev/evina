@@ -32,15 +32,7 @@ const StyledButton = styled.button.withConfig({ shouldForwardProp: prop => !["ou
   }
 `;
 
-const Button: React.FC<ButtonProps> = ({
-  size,
-  color,
-  disabled,
-  outline,
-  text,
-  onClick,
-  ...props
-}) => {
+const Button: React.FC<ButtonProps> = ({ size, color, disabled, outline, text, onClick, ...props }) => {
   return (
     <StyledButton
       type="button"
