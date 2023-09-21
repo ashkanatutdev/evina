@@ -37,8 +37,8 @@ const StyledLabel = styled.div.withConfig({ shouldForwardProp: prop => !["focuse
     flex-direction: row;
     justify-content: flex-start;
     opacity: ${props => props.disabled ? '0.5' : '1'};
-    align-items: ${props => !props.focused ? props.value ? 'flex-start' : 'center': 'flex-start'};
-    font-size: ${props => !props.focused ? props.value ? '0.6rem' : '0.8rem': '0.6rem'};
+    align-items: ${props => !props.focused ? props.value ? 'flex-start' : 'center' : 'flex-start'};
+    font-size: ${props => !props.focused ? props.value ? '0.6rem' : '0.8rem' : '0.6rem'};
     transition: font-size 100ms linear;
     color: ${props => props.disabled && Variants.dark};
     opacity: ${props => props.disabled ? '0.5' : '1'};
@@ -56,30 +56,34 @@ const InputMessage = styled.div<InputProps>`
 const Textbox: React.FC<InputProps> = (props) => {
     const [focus, setFocus] = useState<boolean>(false)
     return (
-        <div style={{ position: 'relative', width: props.width || '100%' }}>
-            {props.label &&
-                <StyledLabel
-                    focused={focus}
+        <div style={props.elementStyle}>
+
+            <div style={{ position: 'relative', width: props.width || '100%' }}>
+                {props.label &&
+                    <StyledLabel
+                        focused={focus}
+                        value={props.value}
+                        disabled={props.disabled}
+                        required={props.required}
+                        color={props.color}>
+                        {props.label}
+                    </StyledLabel>}
+                <StyledInput
                     value={props.value}
-                    disabled= {props.disabled}
-                    required= {props.required}
-                    color={props.color}>
-                    {props.label}
-                </StyledLabel>}
-            <StyledInput
-                value={props.value}
-                required={props.required}
-                disabled={props.disabled}
-                onChange={props.onValueChanged}
-                type={props.type || 'text'}
-                onFocus={() => setFocus(true)}
-                onBlur={() => setFocus(false)}
-                color={props.color}
-                focusedColor={props.focusedColor}
-                textColor={props.textColor}
-            />
-            {props.required && props.value?.toString().length === 0 && !props.disabled &&
-                <InputMessage>{props.requiredMessage ? props.requiredMessage : 'Required field...'}</InputMessage>}
+                    required={props.required}
+                    disabled={props.disabled}
+                    onChange={props.onValueChanged}
+                    type={props.type || 'text'}
+                    onFocus={() => setFocus(true)}
+                    onBlur={() => setFocus(false)}
+                    color={props.color}
+                    focusedColor={props.focusedColor}
+                    textColor={props.textColor}
+                />
+                {props.required && props.value?.toString().length === 0 && !props.disabled &&
+                    <InputMessage>{props.requiredMessage ? props.requiredMessage : 'Required field...'}</InputMessage>}
+            </div>
+
         </div>
     )
 }

@@ -1,14 +1,14 @@
 import { MouseEventHandler } from "react";
-import { Colors } from "../../utils/common";
+import { Colors, CommonTypes } from "../../utils/Common.types";
 
-export interface ButtonProps {
-  color?: Colors
+export interface ButtonProps extends CommonTypes {
+  color?: Colors;
   disabled?: boolean;
+  height?: string;
   outline?: boolean;
-  size?: "small" | "medium" | "large";
   text?: string;
+  textSize?: string;
+  width?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
-
-
 
