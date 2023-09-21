@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ToastProps } from './Toast.types';
 import { BiSolidErrorCircle, BiSolidError } from 'react-icons/bi'
 import { IoCheckmarkDoneCircle, IoInformationCircle } from 'react-icons/io5'
+import { StatusVariants } from '../../utils/common';
 
 const StyledAlert = styled.div<ToastProps>`
     display: flex;
@@ -12,7 +13,7 @@ const StyledAlert = styled.div<ToastProps>`
     align-items: flex-start;
     width: ${props => props.size === 'small' ? '350px' : props.size === 'medium' ? '500px' : props.size === 'large' ? '700px' : '500px'};
     height: 80px;
-    background-color: ${props => !props.color ? props.mode === 'error' ? 'red' : props.mode === 'info' ? 'blue' : props.mode === 'success' ? 'green' : 'orange' : props.color};
+    background-color: ${props => !props.color ? props.mode === 'error' ? StatusVariants.error : props.mode === 'info' ? StatusVariants.info : props.mode === 'success' ? StatusVariants.success : StatusVariants.warning : props.color};
     padding-left: 20px;
     border-radius: 5px;
     border-top-left-radius: 15px;
@@ -34,7 +35,7 @@ const StyledAlertTitle = styled.div.withConfig({ shouldForwardProp: prop => !["t
 const StyledAlertMessage = styled.div.withConfig({ shouldForwardProp: prop => !["textColor"].includes(prop) }) <ToastProps>`
     color:${props => props.textColor ? props.textColor : 'white'};
     font-size: 0.8rem;
-    font-weight: lighter;
+    font-weight: normal;
     margin-top: 2px;
     max-width: 400px;
     width: max-content;
@@ -84,8 +85,6 @@ const ShowToast = ({ mode, message, title, elementStyle, size, color, textColor 
     container.setAttribute("class", 'ev-alert-temporary-container')
     wrapper.appendChild(container)
 
-    
-    
     wrapper.style.display = 'flex'
     wrapper.style.flexDirection = 'column'
     wrapper.style.justifyContent = 'flex-end'
