@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
       "esModuleInterop": true,
+      "target": "ES2021",
       "strict": true,
       "skipLibCheck": true,
       "jsx": "react",
