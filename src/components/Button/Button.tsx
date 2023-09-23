@@ -26,8 +26,8 @@ const StyledButton = styled.button.withConfig({ shouldForwardProp: prop => !["ou
     font-size: ${props => props.textSize ? props.textSize : '0.7rem'};
   }
   &:active {
-    width: ${(props) => !props.disabled && props.width ? `calc(${props.width} - 2px)` : '78px'};
-    height: ${(props) => !props.disabled && props.height ? `calc(${props.height} - 2px)` : '33px'};
+    width: ${(props) => !props.disabled && props.width ? `calc(${props.width} - 2px)` : !props.disabled ? '78px' : '80px'};
+    height: ${(props) => !props.disabled && props.height ? `calc(${props.height} - 2px)` : !props.disabled ? '33px' : '35px'};
   }
 `;
 
