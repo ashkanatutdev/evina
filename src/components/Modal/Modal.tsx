@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { ModalProps } from './Modal.types';
-import { AiFillCloseSquare } from 'react-icons/ai'
 import ReactDOM from 'react-dom/client';
 
 const StyledModalContainer = styled.div`
@@ -93,7 +92,15 @@ const Modal: React.FC<ModalProps> = ({ headerTitle, modalHeader, hasCloseBtn, fo
                             {headerTitle}
                         </StyledModalHeaderTitle>
                         {hasCloseBtn && <StyledModalCleseBtn>
-                            <AiFillCloseSquare size={20} onClick={modalClose} />
+                            <svg
+                                viewBox="0 0 1024 1024"
+                                fill="#505050"
+                                height="1.1em"
+                                width="1.1em"
+                                onClick={modalClose}
+                            >
+                                <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM676.1 657.9c4.4 5.2.7 13.1-6.1 13.1h-58.9c-4.7 0-9.2-2.1-12.3-5.7L512 561.8l-86.8 103.5c-3 3.6-7.5 5.7-12.3 5.7H354c-6.8 0-10.5-7.9-6.1-13.1L470.2 512 347.9 366.1A7.95 7.95 0 01354 353h58.9c4.7 0 9.2 2.1 12.3 5.7L512 462.2l86.8-103.5c3-3.6 7.5-5.7 12.3-5.7H670c6.8 0 10.5 7.9 6.1 13.1L553.8 512l122.3 145.9z" />
+                            </svg>
                         </StyledModalCleseBtn>}
                     </StyledModalHeader>}
                     <StyledModalContext>
