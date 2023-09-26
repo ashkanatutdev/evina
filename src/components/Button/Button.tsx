@@ -11,8 +11,11 @@ const StyledButton = styled.button.withConfig({ shouldForwardProp: prop => !["ou
   font-weight: bold;
   border-radius: 3px;
   display: inline-block;
+  border: 2px white double;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   font-size: ${props => props.textSize ? props.textSize : '0.7rem'};
-  border: ${(props) => (props.outline && props.color === 'light' ? `none` : props.outline && `${getColor(props.color as Colors)} 1px solid`)};
+  border: ${(props) => (props.outline && props.color === 'light' ? `none` : props.outline && `${getColor(props.color as Colors)} 2px double`)};
   cursor: ${(props) => (!props.disabled ? 'pointer' : 'default')};
   width: ${(props) => props.width ? props.width : '80px'};
   height: ${(props) => props.height ? props.height : '35px'};
@@ -21,7 +24,7 @@ const StyledButton = styled.button.withConfig({ shouldForwardProp: prop => !["ou
   color: ${(props) => (props.outline ? props.color === 'light' ? Variants.dark : getColor(props.color as Colors) : props.color === 'light' ? Variants.dark : Variants.light)};
   &:hover {
     color: ${(props) => (!props.outline ? !props.disabled && props.color === 'light' ? Variants.light : !props.disabled && getColor(props.color as Colors) : !props.disabled && props.color === 'light' ? Variants.light : !props.disabled && Variants.light)};
-    border: ${(props) => (!props.outline ? !props.disabled && props.color === 'light' ? `${Variants.dark} 1px solid` : !props.disabled && `${getColor(props.color as Colors)} 1px solid` : !props.disabled && 'none')};
+    border: ${(props) => (!props.outline ? !props.disabled && props.color === 'light' ? `${Variants.dark} 2px double` : !props.disabled && `${getColor(props.color as Colors)} 2px double` : !props.disabled && 'none')};
     background-color: ${(props) => (!props.outline ? !props.disabled && props.color === 'light' ? Variants.dark : !props.disabled && Variants.light : !props.disabled && props.color === 'light' ? Variants.dark : !props.disabled && getColor(props.color as Colors))};
     font-size: ${props => props.textSize ? props.textSize : '0.7rem'};
   }
@@ -46,21 +49,21 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <div style={elementStyle}>
       <div style={{ position: 'relative', width: width ? width : '80px', height: height ? height : '35px' }}>
-      
-      <StyledButton
-        type="button"
-        onClick={onClick}
-        color={color}
-        outline={outline}
-        disabled={disabled}
-        width={width}
-        height={height}
-        textSize={textSize}
-        {...props}>
-        {text}
-      </StyledButton>
-      
-    </div>
+
+        <StyledButton
+          type="button"
+          onClick={onClick}
+          color={color}
+          outline={outline}
+          disabled={disabled}
+          width={width}
+          height={height}
+          textSize={textSize}
+          {...props}>
+          {text}
+        </StyledButton>
+
+      </div>
     </div>
   );
 };
