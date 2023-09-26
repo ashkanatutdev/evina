@@ -1,5 +1,4 @@
 import resolve from "@rollup/plugin-node-resolve";
-import sourcemaps from 'rollup-plugin-sourcemaps';
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
@@ -27,9 +26,8 @@ export default [
       peerDepsExternal(),
       resolve(),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json", sourceMap: true, inlineSources: true }),
-      terser(),
-      sourcemaps()
+      typescript({ tsconfig: "./tsconfig.json"}),
+      terser()
     ],
     external: ["react", "react-dom", "styled-components"],
   },
