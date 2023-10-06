@@ -5,5 +5,6 @@ export interface CommonTypes {
 }
 
 export type Colors = 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success' | 'light' | 'dark';
+export type UIColors = 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success';
 export type StatusColors = 'error' | 'warning' | 'info' | 'success';
 export type ThemeColors = 'light' | 'dark';
