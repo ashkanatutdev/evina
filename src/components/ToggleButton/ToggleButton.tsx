@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ToggleButtonProps } from './ToggleButton.types'
-import { getColor } from '../../utils/common';
-import { UIColors } from '../../utils/Common.types';
+import { getColor, getUIColor } from '../../utils/common';
+import { NEUTRAL_COLOR, UIColors } from '../../utils/Common.types';
 
 const StyledToggleButtonContainer = styled.div<ToggleButtonProps>`
     width: 40px;
     height: 20px;
     background-color: white;
     border: 2px double;
-    border-color: ${props => props.value ? getColor(props.color as UIColors) : 'rgb(180,180,180)'};
+    border-color: ${props => props.value ? getUIColor(props.color as UIColors) : NEUTRAL_COLOR};
     border-radius: 3px;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -23,7 +23,7 @@ const StyledToggleButtonToggler = styled.div<ToggleButtonProps>`
     width: 60%;
     height: 100%;
     border-radius: 2px;
-    background-color: ${props => props.value ? getColor(props.color as UIColors) : 'rgb(180,180,180)'};
+    background-color: ${props => props.value ? getUIColor(props.color as UIColors) : NEUTRAL_COLOR};
     border-radius: 3px;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;

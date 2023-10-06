@@ -1,4 +1,4 @@
-import { Colors, StatusColors, ThemeColors } from "./Common.types";
+import { Colors, StatusColors, ThemeColors, UIColors } from "./Common.types";
 
 export enum Variants {
   primary = "#008ae6",
@@ -9,6 +9,14 @@ export enum Variants {
   success = "#88cc00",
   light = "#eff5f5",
   dark = "#141f1f"
+}
+export enum UIVariants {
+  primary = "#008ae6",
+  secondary = "#666699",
+  error = "#ff4d4d",
+  warning = "#ffa64d",
+  info = "#0099cc",
+  success = "#88cc00"
 }
 export enum StatusVariants {
   error = "#ff4d4d",
@@ -47,6 +55,30 @@ export const getColor = (variant: Colors): string => {
       break;
     case 'light':
       color = Variants.light
+      break;
+  }
+  return color
+}
+export const getUIColor = (variant: UIColors): string => {
+  let color: string = ''
+  switch (variant) {
+    case 'primary':
+      color = UIVariants.primary
+      break;
+    case 'secondary':
+      color = UIVariants.secondary
+      break;
+    case 'error':
+      color = UIVariants.error
+      break;
+    case 'warning':
+      color = UIVariants.warning
+      break;
+    case 'info':
+      color = UIVariants.info
+      break;
+    case 'success':
+      color = UIVariants.success
       break;
   }
   return color
